@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "aws-session-s3-bucket-aisana"
-    key    = "terraform/terraform.tfstate"
+    bucket = "ac-task-terraform-state"
+    key    = "test/terraform/terraform.tfstate"
     region = "us-east-1"
   }
 }
