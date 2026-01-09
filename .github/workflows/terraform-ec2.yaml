@@ -4,16 +4,16 @@ on:
   push:
     branches:
       - main  # Trigger workflow on push to the main branch
-  workflow_dispatch:
-    inputs:
-      action:
-        description: 'Action to perform (create or delete)'
-        required: true
-        default: 'create'
-        type: choice
-        options:
-          - create
-          - delete
+  # workflow_dispatch:
+  #   inputs:
+  #     action:
+  #       description: 'Action to perform (create or delete)'
+  #       required: true
+  #       default: 'create'
+  #       type: choice
+  #       options:
+  #         - create
+  #         - delete
 permissions:
   id-token: write
   contents: read
