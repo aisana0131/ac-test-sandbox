@@ -59,12 +59,12 @@ jobs:
 
       # Step 8: Create EC2 Instance (if action is 'create')
       - name: Create Instance
-        if: ${{ github.event.inputs.action == 'create' }}
+        # if: ${{ github.event.inputs.action == 'create' }}
         run: terraform apply -auto-approve
 
       # Step 9: Output Public IP (if action is 'create')
       - name: Output Public IP
-        if: ${{ github.event.inputs.action == 'create' }}
+        # if: ${{ github.event.inputs.action == 'create' }}
         run: |
           echo "EC2 Public IP: $(terraform output -raw public_ip)"
 
