@@ -57,10 +57,10 @@ jobs:
         run: |
           checkov -d . --quiet | grep -E "FAILED|CRITICAL|HIGH"
 
-      # Step 8: Create EC2 Instance (if action is 'create')
-      - name: Create Instance
-        # if: ${{ github.event.inputs.action == 'create' }}
-        run: terraform apply -auto-approve
+      # # Step 8: Create EC2 Instance (if action is 'create')
+      # - name: Create Instance
+      #   # if: ${{ github.event.inputs.action == 'create' }}
+      #   run: terraform apply -auto-approve
 
       # Step 9: Output Public IP (if action is 'create')
       - name: Output Public IP
@@ -68,7 +68,7 @@ jobs:
         run: |
           echo "EC2 Public IP: $(terraform output -raw public_ip)"
 
-      # # Step 10: Destroy EC2 Instance (if action is 'delete')
-      # - name: Destroy Instance
-      #   if: ${{ github.event.inputs.action == 'delete' }}
-      #   run: terraform destroy -auto-approve
+      # Step 10: Destroy EC2 Instance (if action is 'delete')
+      - name: Destroy Instance
+        # if: ${{ github.event.inputs.action == 'delete' }}
+        run: terraform destroy -auto-approve
