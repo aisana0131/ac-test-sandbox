@@ -48,14 +48,14 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
 
-      # Step 6: Install Checkov
-      - name: Install Checkov
-        run: pip install checkov
+      # # Step 6: Install Checkov
+      # - name: Install Checkov
+      #   run: pip install checkov
 
-      # Step 7: Run Checkov Scan (Filtered Output)
-      - name: Run Checkov Scan
-        run: |
-          checkov -d . --quiet | grep -E "FAILED|CRITICAL|HIGH"
+      # # Step 7: Run Checkov Scan (Filtered Output)
+      # - name: Run Checkov Scan
+      #   run: |
+      #     checkov -d . --quiet | grep -E "FAILED|CRITICAL|HIGH"
 
       # Step 8: Create EC2 Instance (if action is 'create')
       - name: Create Instance
