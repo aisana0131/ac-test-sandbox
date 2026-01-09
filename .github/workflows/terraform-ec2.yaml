@@ -68,7 +68,7 @@ jobs:
         run: |
           echo "EC2 Public IP: $(terraform output -raw public_ip)"
 
-      # Step 10: Destroy EC2 Instance (if action is 'delete')
-      - name: Destroy Instance
-        if: ${{ github.event.inputs.action == 'delete' }}
-        run: terraform destroy -auto-approve
+      # # Step 10: Destroy EC2 Instance (if action is 'delete')
+      # - name: Destroy Instance
+      #   if: ${{ github.event.inputs.action == 'delete' }}
+      #   run: terraform destroy -auto-approve
