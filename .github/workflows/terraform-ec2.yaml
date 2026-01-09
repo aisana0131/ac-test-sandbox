@@ -33,11 +33,6 @@ jobs:
         with:
          role-to-assume: arn:aws:iam::945356073634:role/github-ac-task-terraform-oidc-role
          aws-region: us-east-1
-        # uses: aws-actions/configure-aws-credentials@v2
-        # with:
-        #   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  # Use the AWS_ACCESS_KEY_ID secret
-        #   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  # Use the AWS_SECRET_ACCESS_KEY secret
-        #   aws-region: ${{ secrets.AWS_REGION }}  # Use the AWS_REGION secret
 
       # Step 3: Set up Terraform
       - name: Set up Terraform

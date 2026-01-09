@@ -1,8 +1,3 @@
-# Provider configuration
-provider "aws" {
-  region = "us-east-1"  # Replace with your desired AWS region
-}
-
 # Use the default VPC
 data "aws_vpc" "default" {
   default = true
