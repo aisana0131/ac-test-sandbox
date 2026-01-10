@@ -1,74 +1,74 @@
-name: Manage EC2 Instance
+# name: Manage EC2 Instance
 
-on:
-  push:
-    branches:
-      - main  # Trigger workflow on push to the main branch
-  # workflow_dispatch:
-  #   inputs:
-  #     action:
-  #       description: 'Action to perform (create or delete)'
-  #       required: true
-  #       default: 'create'
-  #       type: choice
-  #       options:
-  #         - create
-  #         - delete
-permissions:
-  id-token: write
-  contents: read
+# on:
+#   push:
+#     branches:
+#       - main  # Trigger workflow on push to the main branch
+#   # workflow_dispatch:
+#   #   inputs:
+#   #     action:
+#   #       description: 'Action to perform (create or delete)'
+#   #       required: true
+#   #       default: 'create'
+#   #       type: choice
+#   #       options:
+#   #         - create
+#   #         - delete
+# permissions:
+#   id-token: write
+#   contents: read
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      # Step 1: Checkout the code
-      - name: Checkout code
-        uses: actions/checkout@v2
+#     steps:
+#       # Step 1: Checkout the code
+#       - name: Checkout code
+#         uses: actions/checkout@v2
 
-      # Step 2: Configure AWS credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-         role-to-assume: arn:aws:iam::945356073634:role/github-ac-task-terraform-oidc-role
-         aws-region: us-east-1
+#       # Step 2: Configure AWS credentials
+#       - name: Configure AWS credentials
+#         uses: aws-actions/configure-aws-credentials@v4
+#         with:
+#          role-to-assume: OIDC/GITHUB/ACTIONS
+#          aws-region: us-east-1
 
-      # Step 3: Set up Terraform
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.14.0  # Replace with your desired Terraform version
+#       # Step 3: Set up Terraform
+#       - name: Set up Terraform
+#         uses: hashicorp/setup-terraform@v2
+#         with:
+#           terraform_version: 1.14.0  # Replace with your desired Terraform version
 
-      # Step 4: Initialize Terraform
-      - name: Terraform Init
-        run: terraform init
+#       # Step 4: Initialize Terraform
+#       - name: Terraform Init
+#         run: terraform init
 
-      # Step 5: Run Terraform Plan
-      - name: Terraform Plan
-        run: terraform plan
+#       # Step 5: Run Terraform Plan
+#       - name: Terraform Plan
+#         run: terraform plan
 
-      # Step 6: Install Checkov
-      - name: Install Checkov
-        run: pip install checkov
+#       # Step 6: Install Checkov
+#       - name: Install Checkov
+#         run: pip install checkov
 
-      # Step 7: Run Checkov Scan (Filtered Output)
-      - name: Run Checkov Scan
-        run: |
-          checkov -d . --quiet | grep -E "FAILED|CRITICAL|HIGH"
+#       # Step 7: Run Checkov Scan (Filtered Output)
+#       - name: Run Checkov Scan
+#         run: |
+#           checkov -d . --quiet | grep -E "FAILED|CRITICAL|HIGH"
 
-      # # Step 8: Create EC2 Instance (if action is 'create')
-      # - name: Create Instance
-      #   # if: ${{ github.event.inputs.action == 'create' }}
-      #   run: terraform apply -auto-approve
+#       # # Step 8: Create EC2 Instance (if action is 'create')
+#       # - name: Create Instance
+#       #   # if: ${{ github.event.inputs.action == 'create' }}
+#       #   run: terraform apply -auto-approve
 
-      # Step 9: Output Public IP (if action is 'create')
-      - name: Output Public IP
-        # if: ${{ github.event.inputs.action == 'create' }}
-        run: |
-          echo "EC2 Public IP: $(terraform output -raw public_ip)"
+#       # Step 9: Output Public IP (if action is 'create')
+#       - name: Output Public IP
+#         # if: ${{ github.event.inputs.action == 'create' }}
+#         run: |
+#           echo "EC2 Public IP: $(terraform output -raw public_ip)"
 
-      # Step 10: Destroy EC2 Instance (if action is 'delete')
-      - name: Destroy Instance
-        # if: ${{ github.event.inputs.action == 'delete' }}
-        run: terraform destroy -auto-approve
+#       # Step 10: Destroy EC2 Instance (if action is 'delete')
+#       - name: Destroy Instance
+#         # if: ${{ github.event.inputs.action == 'delete' }}
+#         run: terraform destroy -auto-approve
