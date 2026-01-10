@@ -48,7 +48,6 @@ jobs:
         run: terraform validate
 
       - name: Terraform Format Check
-      
         run: terraform fmt -check -recursive
 
       # Step 5: Run Terraform Plan
