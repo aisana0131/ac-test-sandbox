@@ -1,16 +1,16 @@
 name: Terraform Infra Pipeline
 
 on:
-  workflow_dispatch:
-    inputs:
-      action:
-        description: 'Terraform action'
-        required: true
-        type: choice
-        options:
-          - plan
-          - apply
-          - destroy
+  # workflow_dispatch:
+  #   inputs:
+  #     action:
+  #       description: 'Terraform action'
+  #       required: true
+  #       type: choice
+  #       options:
+  #         - plan
+  #         - apply
+  #         - destroy
 
 env:
   AWS_REGION: "us-east-1"
@@ -63,7 +63,7 @@ jobs:
       working-directory: ${{ env.TF_WORKING_DIR }}
       run: terraform apply -input=false -auto-approve
 
-    - name: Terraform Destroy
-      if: github.event.inputs.action == 'destroy'
-      working-directory: ${{ env.TF_WORKING_DIR }}
-      run: terraform destroy -input=false -auto-approve
+    # - name: Terraform Destroy
+    #   if: github.event.inputs.action == 'destroy'
+    #   working-directory: ${{ env.TF_WORKING_DIR }}
+    #   run: terraform destroy -input=false -auto-approve
