@@ -12,7 +12,8 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
       
       - name: Enable debug
         run: set -x
@@ -23,27 +24,32 @@ jobs:
           role-to-assume: arn:aws:iam::945356073634:role/github-ac-task-terraform-oidc-role
           aws-region: us-east-1
 
-      - uses: hashicorp/setup-terraform@v2
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.14.0
 
-      - run: terraform fmt -check -recursive
-      - run: terraform init
-        working-directory: ./terraform
-      - run: terraform validate
-        working-directory: ./terraform
-      - run: terraform plan -out=tfplan
-        working-directory: ./terraform
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init
+        run: terraform -chdir="terraform" init
+
+      - name: Terraform Validate
+        run: terraform -chdir="terraform" validate
+
+      - name: Terraform Plan
+        run: terraform -chdir="terraform" plan -out=tfplan
 
       - name: Upload plan to S3
-        working-directory: ./terraform
-        run: aws s3 cp tfplan s3://ac-task-terraform-state/ec2/tfplan
+        run: aws s3 cp terraform/tfplan s3://ac-task-terraform-state/ec2/tfplan
 
   apply:
     needs: plan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -52,9 +58,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Download plan from S3
-        working-directory: ./terraform
-        run: aws s3 cp s3://ac-task-terraform-state/ec2/tfplan tfplan
+        run: aws s3 cp s3://ac-task-terraform-state/ec2/tfplan terraform/tfplan
 
       - name: Terraform Apply
-        working-directory: ./terraform
-        run: terraform apply -auto-approve tfplan
+        run: terraform -chdir="terraform" apply -auto-approve tfplan
