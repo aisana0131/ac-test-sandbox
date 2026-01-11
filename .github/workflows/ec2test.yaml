@@ -3,13 +3,16 @@ name: caller workflow test
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   deploy:
     uses: aisana0131/centralized-workflow/.github/workflows/centralized-workflow.yaml@main
     with:
-      working_directory: terraform
+      working_directory: ./terraform
       aws_role_arn: ${{ secrets.OIDC_ARN}}
       s3_bucket: ac-task-terraform-state
       s3_key_prefix: ec2
