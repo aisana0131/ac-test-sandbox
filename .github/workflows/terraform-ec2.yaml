@@ -1,4 +1,4 @@
-# name: Terraform Pipeline test / working
+# name: Standalone Terraform Pipeline test / working
 
 # on:
 #   push:
