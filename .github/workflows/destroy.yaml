@@ -1,0 +1,18 @@
+name: Destroy via Centralized Terraform Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  destroy:
+    uses: aisana0131/ac-test-centralized-workflow/.github/workflows/destroy.yaml@main
+    with:
+      working_directory: terraform
+      aws_role_arn: arn:aws:iam::945356073634:role/github-ac-task-terraform-oidc-role
+      aws_region: us-east-1
+    secrets:
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
