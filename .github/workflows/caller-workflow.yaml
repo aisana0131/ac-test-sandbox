@@ -19,4 +19,4 @@ jobs:
       aws_region: us-east-1
     secrets:
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      aws_role_arn: ${{OIDC_ROLE}}  # test secrets
+      aws_role_arn: ${{secrets.OIDC_ROLE}}  # test secrets
