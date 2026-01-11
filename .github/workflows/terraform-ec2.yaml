@@ -65,5 +65,8 @@ jobs:
       - name: Download plan from S3
         run: aws s3 cp s3://ac-task-terraform-state/ec2/tfplan terraform/tfplan
 
-      - name: Terraform Apply
-        run: terraform -chdir="terraform" apply -auto-approve tfplan
+      # - name: Terraform Apply
+      #   run: terraform -chdir="terraform" apply -auto-approve tfplan
+
+      - name: Terraform Destroy
+        run: terraform -chdir="terraform" destroy -auto-approve tfplan
