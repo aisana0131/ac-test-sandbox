@@ -13,7 +13,7 @@ jobs:
     uses: aisana0131/centralized-workflow/.github/workflows/new-centralized-workflow.yaml@main
     with:
       working_directory: terraform
-      aws_role_arn: arn:aws:iam::945356073634:role/github-ac-task-terraform-oidc-role
+      aws_role_arn: ${{secrets.OIDC_ROLE}}
       s3_bucket: ac-task-terraform-state
       s3_key_prefix: ec2
       aws_region: us-east-1
