@@ -26,14 +26,14 @@ jobs:
 
       - run: terraform fmt -check -recursive
       - run: terraform init
-        working-directory: terraform
+        working-directory: ./terraform
       - run: terraform validate
-        working-directory: terraform
+        working-directory: ./terraform
       - run: terraform plan -out=tfplan
-        working-directory: terraform
+        working-directory: ./terraform
 
       - name: Upload plan to S3
-        working-directory: terraform
+        working-directory: ./terraform
         run: aws s3 cp tfplan s3://ac-task-terraform-state/ec2/tfplan
 
   apply:
@@ -49,7 +49,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Download plan from S3
-        working-directory: terraform
+        working-directory: ./terraform
         run: aws s3 cp s3://ac-task-terraform-state/ec2/tfplan tfplan
 
       - name: Terraform Apply
