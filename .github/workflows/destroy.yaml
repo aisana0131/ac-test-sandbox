@@ -1,4 +1,4 @@
-name: Destroy via Centralized Terraform Workflow
+name: Destroy via Centralized Terraform Workflow (test)
 
 on:
   workflow_dispatch:
