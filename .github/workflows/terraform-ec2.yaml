@@ -29,9 +29,6 @@ jobs:
         with:
           terraform_version: 1.14.0
 
-      # - name: Terraform Format Check
-      #   run: terraform fmt -check -recursive
-
       - name: Terraform Init
         run: terraform -chdir="terraform" init
 
@@ -61,6 +58,9 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::945356073634:role/github-ac-task-terraform-oidc-role
           aws-region: us-east-1
+
+      - name: Terraform Init
+        run: terraform -chdir="terraform" init
 
       - name: Download plan from S3
         run: aws s3 cp s3://ac-task-terraform-state/ec2/tfplan terraform/tfplan
