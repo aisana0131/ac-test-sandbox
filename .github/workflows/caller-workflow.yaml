@@ -17,4 +17,5 @@ jobs:
       s3_bucket: ac-task-terraform-state
       s3_key_prefix: ec2
       aws_region: us-east-1
-    secrets: inherit
+    secrets:
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
