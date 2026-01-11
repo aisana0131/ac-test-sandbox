@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
     bucket = "ac-task-terraform-state"
-    key    = "test-workflow/terraform/terraform.tfstate"
+    key    = "test-new/workflow/terraform/terraform.tfstate"
     region = "us-east-1"
-    # dynamodb_table = "ac-task-terraform"
+    dynamodb_table = "ac-task-terraform"
     encrypt        = true
 
   }
