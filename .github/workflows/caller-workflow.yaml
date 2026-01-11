@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   deploy:
-    uses: aisana0131/centralized-workflow/.github/workflows/new-centralized-workflow.yaml@main
+    uses: aisana0131/ac-test-centralized-workflow/.github/workflows/new-centralized-workflow.yaml@main
     with:
       working_directory: terraform
       aws_role_arn: arn:aws:iam::945356073634:role/github-ac-task-terraform-oidc-role
