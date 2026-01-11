@@ -1,0 +1,20 @@
+name: Deploy via Centralized Terraform Workflow
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    uses: aisana0131/centralized-workflow/.github/workflows/terraform.yml@main
+    with:
+      working_directory: terraform
+      aws_role_arn: arn:aws:iam::945356073634:role/github-ac-task-terraform-oidc-role
+      s3_bucket: ac-task-terraform-state
+      s3_key_prefix: ec2
+      aws_region: us-east-1
+    secrets: inherit
