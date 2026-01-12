@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   deploy:
-    uses: aisana0131/ac-test-centralized-workflow/.github/workflows/apply.yaml@main
+    uses: aisana0131/AC-Task/.github/workflows/centralized-apply.yaml@main
     with:
       working_directory: terraform
       aws_role_arn: ${{ vars.AWS_PROD_ROLE_ARN }}
