@@ -3,6 +3,6 @@ resource "aws_instance" "final_ec2" {
   instance_type = "t2.micro"
   tags = {
     Name        = "final-test"
-    Environment = "final test"
+    Environment = "test"
   }
 }
