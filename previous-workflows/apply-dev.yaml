@@ -1,4 +1,4 @@
-name: Deploy via Centralized Terraform Workflow (test3)
+name: Deploy via Centralized Terraform Workflow
 on:
   push:
     branches: [dev]
