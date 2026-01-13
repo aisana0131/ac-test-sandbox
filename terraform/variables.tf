@@ -23,10 +23,10 @@ variable "okta_private_key_id" {
   type = string
 }
 
-# variable "okta_secret_id" {
-#   description = "The secret ID in AWS Secrets Manager"
-#   type        = string
-# }
+variable "okta_secret_id" {
+  description = "The secret ID in AWS Secrets Manager"
+  type        = string
+}
 
 variable "okta_group_name" {
   type = string
