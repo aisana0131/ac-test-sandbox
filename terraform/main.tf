@@ -12,6 +12,10 @@ provider "okta" {
   private_key  = data.aws_secretsmanager_secret_version.okta_private_key.secret_string
 }
 
+# data "aws_secretsmanager_secret_version" "okta_private_key" {
+#   secret_id = var.okta_secret_id
+# }
+
 data "aws_secretsmanager_secret_version" "okta_private_key" {
-  secret_id = var.okta_secret_id
+  secret_id = "terraform/okta/key"
 }
