@@ -13,6 +13,6 @@ variable "okta_groups" {
   }))
 }
 
-variable "aws_sso_url" {
-  type = string
-}
+# variable "aws_sso_url" {
+#   type = string
+# }

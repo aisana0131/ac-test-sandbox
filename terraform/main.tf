@@ -15,6 +15,6 @@ module "okta" {
   source = "./modules/okta"
   okta_users  = var.okta_users
   okta_groups = var.okta_groups
-  aws_sso_url = var.aws_sso_url
+  # aws_sso_url = var.aws_sso_url
 
 }

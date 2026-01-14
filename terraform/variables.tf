@@ -7,10 +7,10 @@ variable "okta_secret_id"      { type = string }
 
 variable "region" {type = string  }
 
-variable "aws_sso_url" {
-  type        = string
-  description = "AWS IAM Identity Center SSO URL (https://d-xxxx.awsapps.com/start)"
-}
+# variable "aws_sso_url" {
+#   type        = string
+#   description = "AWS IAM Identity Center SSO URL (https://d-xxxx.awsapps.com/start)"
+# }
 
 variable "okta_users" {
   type = map(object({
